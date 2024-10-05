@@ -1,0 +1,26 @@
+{% extends 'layouts/box.html' %}
+
+{% block title %}{{ product.title }} | {% endblock %}
+
+{% block content %}
+
+<h1>Edit Product</h1>
+<div class="card p-4">
+    <div class="flex items-center mb-4">
+        <img class="w-20 h-20 object-cover rounded-xl mr-4" src="{{product.image.url}}">
+        <h3 class="text-lg font-bold">{{ product.title }}</h3>
+    </div>
+    
+    <div class="pb-2">
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form }}
+            <div class="pt-4">
+                <button class="p-4 bg-gray-800 hover:bg-gray-500">Submit</button>
+                <a class="p-4 bg-gray-800 hover:bg-gray-500 rounded ml-1 text-white font-bold" href="{% url 'home' %}">Go Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

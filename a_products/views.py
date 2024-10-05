@@ -56,3 +56,24 @@ def product_delete_view(request, pk):
         return redirect('home')
     
     return render(request, 'a_products/product_delete.html', {'product' : product})
+
+
+
+@login_required
+def product_edit_view(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    form = ProductEditForm(instance=product)
+    
+    if request.method == 'POST':
+        form = ProductEditForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product updated')
+            return redirect('home')
+    
+    context = {
+        'form': form,
+        'product': product
+    }
+    
+    return render(request, 'a_products/product_edit.html', context)
