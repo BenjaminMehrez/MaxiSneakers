@@ -1,0 +1,21 @@
+{% extends 'layouts/b.html' %}
+
+{% block content %}
+<div class="md:flex items-center">
+    <div class="w-full md:max-w-sm mr-6 md:[&>*>*>p]:text-4xl">
+
+        {% include 'a_products/product.html' %}
+
+    </div>
+    <div class="w-96 h-96 bg-white px-10 py-20">
+        <h1>Delete Product</h1>
+        <p class="mb-6">Are you sure you want to delete this product?</p>
+
+        <form method='POST'>
+            {% csrf_token %}
+            <button class="bg-red-700 hover:bg-red-800 p-4">Confirm</button>
+            <a class="bg-gray-800 hover:bg-gray-600 p-4 text-white rounded font-bold ml-1" href="{% url 'home' %}">Go Back</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
