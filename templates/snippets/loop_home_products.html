@@ -1,6 +1,8 @@
-<fade-in class="opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
+<fade-in class="flex flex-wrap gap-10 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
 {% for product in products %}
-{% include 'a_products/product.html' %}
+    
+    {% include 'a_products/product.html' %}
+    
 {% endfor %}
 
 

@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
+from a_products.models import *
 from .forms import *
 
 # Create your views here.
@@ -19,7 +20,14 @@ def profile_view(request, username=None):
         except:
             return redirect_to_login(request.get_full_path())
         
-    return render(request, 'a_users/profile.html', {'profile': profile})
+    categories = Tag.objects.all()
+    
+    context = {
+        'categories': categories,
+        'profile': profile
+    }
+        
+    return render(request, 'a_users/profile.html', context)
     
     
 @login_required
@@ -43,13 +51,21 @@ def profile_edit_view(request):
         template = 'a_users/profile_edit.html'
         
         
-    return render(request, template, {'form': form})
+    categories = Tag.objects.all()
+    
+    context = {
+        'categories': categories,
+        'form': form
+    }
+        
+    return render(request, template, context)
 
 
 
 @login_required
 def profile_settings_view(request):
-    return render(request, 'a_users/profile_settings.html')
+    categories = Tag.objects.all()
+    return render(request, 'a_users/profile_settings.html', {'categories': categories})
 
 
 @login_required
@@ -102,4 +118,7 @@ def profile_delete_view(request):
         messages.success(request, 'Account deleted, what a pity')
         return redirect('home')
     
-    return render(request, 'a_users/profile_delete.html')
+    categories = Tag.objects.all()
+    
+    
+    return render(request, 'a_users/profile_delete.html', {'categories': categories})
