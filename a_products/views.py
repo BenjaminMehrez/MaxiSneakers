@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import *
 from .forms import *
 # Create your views here.
@@ -13,7 +14,6 @@ def admin_required(user):
     return user.is_superuser
 
 def home_view(request, tag=None):
-    
     if tag:
         products = Product.objects.filter(tags__slug=tag)
         tag = get_object_or_404(Tag, slug=tag)
@@ -58,6 +58,22 @@ def product_page(request, pk):
     return render(request, 'a_products/product_page.html', context)
 
 
+def search_products(request):
+    query = request.GET.get('q')
+    if query:
+        results = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        results = Product.objects.all()
+        
+    categories = Tag.objects.all()
+    
+    context = {
+        'results': results,
+        'query': query,
+        'categories': categories
+    }
+
+    return render(request, 'a_products/search_page.html', context)
 
 @user_passes_test(admin_required)
 def product_create_view(request):

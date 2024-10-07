@@ -4,12 +4,12 @@
 {% block layout %}
 
 
-<content class="sm:flex max-w-7xl mx-auto mt-20" x-data="{ mobileSidebarOpen: false }">
+<content class="sm:flex justify-center max-w-7xl mx-auto mt-20" x-data="{ mobileSidebarOpen: false }">
     <mobileSidebarNav class="flex justify-center pl-4 mt-10 sm:hidden col-span-full mx-auto mb-6 z-10 relative">
         <div @click="mobileSidebarOpen = !mobileSidebarOpen" class="mt-20">
             <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
                 <li x-data="{ dropdownOpen: false }" class="relative">
-                    <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="hover:text-white text-lg cursor-pointer font-bold select-none">
+                    <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="bg-white hover:text-white text-lg cursor-pointer font-bold select-none">
                         Category
                         <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="Dropdown" />
                     </a>

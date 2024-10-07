@@ -12,8 +12,8 @@
         <a class="font-bold">{{ tag }}</a>
         {% endfor %}
     </div>
-    <div class="mt-10 mx-6">
-        <button class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">
+    <div class="flex gap-2 justify-center mt-10 pb-32 mx-6">
+        <button class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">
             Add Cart
         </button>
         {% if user.is_superuser %}
