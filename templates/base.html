@@ -115,6 +115,21 @@
         .alert-danger { @apply bg-red-600 }
 
 
+        .search{
+                border-radius: 0;
+                width: clamp(100px,auto,250px);
+                padding-left: 14px;
+                border-bottom-left-radius: 20px;
+                border-top-left-radius: 20px;
+            }
+
+            .search-lupa{
+                border-radius: 0;
+                width: auto;
+                border-bottom-right-radius: 20px;
+                border-top-right-radius: 20px;
+                padding-right: 15px;
+            }
         
         @media (min-width: 768px){
 
@@ -122,6 +137,22 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr, 1, 5fr);
 
+            }
+
+            .search{
+                border-radius: 0;
+                width: 145px;
+                padding-left: 14px;
+                border-bottom-left-radius: 20px;
+                border-top-left-radius: 20px;
+            }
+
+            .search-lupa{
+                border-radius: 0;
+                width: 42px;
+                border-bottom-right-radius: 20px;
+                border-top-right-radius: 20px;
+                padding-right: 15px;
             }
             
         }
@@ -151,23 +182,8 @@
                 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
             }
 
-            .search{
-                border-radius: 0;
-                width: 145px;
-                padding-left: 14px;
-                border-bottom-left-radius: 20px;
-                border-top-left-radius: 20px;
-            }
 
-            .search-lupa{
-                border-radius: 0;
-                width: 42px;
-                border-bottom-right-radius: 20px;
-                border-top-right-radius: 20px;
-                padding-right: 15px;
-            }
          }
-
 
 
         
