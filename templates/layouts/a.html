@@ -13,13 +13,13 @@
                         Category
                         <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="Dropdown" />
                     </a>
-                    <div x-show="dropdownOpen" x-cloak class="absolute right-0 bg-white text-black shadow rounded-lg py-2 pr-8 z-20"
+                    <div x-show="dropdownOpen" x-cloak class="py-3 absolute bg-white text-black shadow rounded-md z-20"
                     x-transition:enter="duration-300 ease-out"
                     x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
                     x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-                        <ul class="ml-6 flex flex-col gap-1 items-baseline space-x-4">
+                        <ul class="flex flex-col gap-2">
                             {% for category in categories %}
-                            <li><a class="hover:bg-gray-700 hover:text-white rounded-md text-xl font-medium{% if category.slug == tag.slug %}font-bold{% endif %}" href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+                            <li><a class="hover:bg-gray-700 hover:text-white px-10 py-2 rounded-md {% if category.slug == tag.slug %}font-bold{% endif %} text-lg" href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -27,7 +27,7 @@
             </ul>
         </div>
     </mobileSidebarNav>
-    <main class="flex flex-wrap justify-center gap-10 mt-10 mb-40">
+    <main class="flex flex-wrap justify-center gap-8 mt-10 mb-40">
 
         {% block content %}
         {% endblock %}
