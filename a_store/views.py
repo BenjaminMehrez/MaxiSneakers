@@ -1,3 +1,6 @@
+from django.shortcuts import render
+
+# Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
@@ -7,6 +10,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from .models import *
 from .forms import *
+from .cart import *
 # Create your views here.
 
 
@@ -136,3 +140,23 @@ def product_edit_view(request, pk):
     }
     
     return render(request, 'a_products/product_edit.html', context)
+
+
+
+def cart_add(request, product_id):
+    cart = Cart(request) 
+    product = get_object_or_404(Product, id=product_id)
+    cart.add(product=product, quantity=1) 
+    return redirect('cart-page')
+
+
+def cart_remove(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    cart.remove(product)
+    return redirect('cart-page')
+
+
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, 'a_cart/cart_page.html', {'cart': cart})

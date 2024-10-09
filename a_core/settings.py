@@ -43,11 +43,12 @@ INSTALLED_APPS = [
     "django_htmx",
     'allauth.socialaccount',
     'a_users',
-    'a_products',
+    'a_store',
     
 ]
 
 SITE_ID=1
+CART_SESSION_ID = 'cart'
 
 
 MIDDLEWARE = [

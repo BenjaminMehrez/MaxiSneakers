@@ -13,9 +13,7 @@
         {% endfor %}
     </div>
     <div class="flex gap-2 justify-center mt-10 pb-32 mx-6">
-        <button class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">
-            Add Cart
-        </button>
+        <button class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded"><a href="{% url 'cart-add' product.id %}">Add Cart</a></button>
         {% if user.is_superuser %}
         <a class="bg-red-600 p-3 rounded hover:bg-red-800 font-bold text-white" href="{% url 'product-delete' product.id %}">Delete</a>
         <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Edit</a>

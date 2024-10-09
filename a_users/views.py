@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
-from a_products.models import *
+from a_store.models import *
 from .forms import *
 
 # Create your views here.
