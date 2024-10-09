@@ -50,9 +50,10 @@
                 <input class="p-1 text-black search outline-0" type="text" name="q" placeholder="Search" value="{{ query }}">
                 <button class="p-2 bg-gray-200 hover:bg-gray-300 search-lupa"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
             </form>
-            <div class="flex cart-heart ml-4 gap-4">
+            <div class="flex cart-heart ml-4 gap-1">
                 <img class="w-5 cursor-pointer" src="{% static 'images/cart.svg' %}" alt="cart">
-                <img class="w-5 cursor-pointer" src="{% static 'images/heart.svg' %}" alt="heart">
+                <span id="cart_quantity">{{ cart|length }}</span>
+                <img class="w-5 ml-2 cursor-pointer" src="{% static 'images/heart.svg' %}" alt="heart">
             </div>
     </div>
     <nav x-show="mobilesearchOpen" x-cloak class="md:!none bg-gray-800 h-screen w-screen absolute z-[-1]"

@@ -19,6 +19,7 @@
     {% django_htmx_script %}
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style type="text/tailwindcss">
         [x-cloak] { 
             display: none !important; 
@@ -211,8 +212,10 @@
                 padding: 10px;
                 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
             }
+         }
 
-
+         .container-cart{
+            width: 50dvw;
          }
 
 

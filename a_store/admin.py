@@ -8,3 +8,4 @@ from .models import *
 
 admin.site.register(Product)
 admin.site.register(Tag)
+admin.site.register(Order)

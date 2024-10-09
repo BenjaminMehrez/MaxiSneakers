@@ -146,8 +146,22 @@ def product_edit_view(request, pk):
 def cart_add(request, product_id):
     cart = Cart(request) 
     product = get_object_or_404(Product, id=product_id)
-    cart.add(product=product, quantity=1) 
+    
+    quantity = int(request.GET.get('quantity', 1))
+    
+    if product.stock >= quantity:
+        cart.add(product=product, quantity=quantity)
+        product.stock -= quantity
+    else:
+        messages.warning(request, f'There are not stock {product.title}')
+    
     return redirect('cart-page')
+
+def discount(request, product_id):
+    cart = Cart(request)
+    product = get_object_or_404(Product, id=product_id)
+    
+    
 
 
 def cart_remove(request, product_id):
