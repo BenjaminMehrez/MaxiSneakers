@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
 from a_store.models import Product
 from django.http import JsonResponse
@@ -7,18 +7,33 @@ from django.http import JsonResponse
 
 
 def cart_summary(request):
-    return render(request, 'a_ecart/cart_summary.html')
+
+    cart = Cart(request)
+    cart_products = cart.get_prods
+    quantities = cart.get_quants
+
+    context = {
+        'cart_products': cart_products,
+        'quantities': quantities
+    }
+    
+    return render(request, 'a_ecart/cart_summary.html', context)
 
 
 def cart_add(request):
     cart = Cart(request)
     
     if request.POST.get('action') == 'post':
-        product_id = request.POST.get('product_id')
-        product = get_object_or_404(Product, id=product_id)
-        cart.add(product=product)
         
-        cart_quantity = cart.__len__()
+        product_id = str(request.POST.get('product_id'))
+        
+        product_qty = int(request.POST.get('product_qty'))
+        
+        product = get_object_or_404(Product, id=product_id)
+        
+        cart.add(product=product, quantity=product_qty)
+        
+        cart_quantity = cart.__len__()  
             
         # response = JsonResponse({'Product Title: ': product.title })
         response = JsonResponse({'qty': cart_quantity })
@@ -26,9 +41,17 @@ def cart_add(request):
 
 def cart_delete(request):
     pass
-    
+
 
 def cart_update(request):
-    pass
+    cart = Cart(request)
+    
+    if request.POST.get('action') == 'post':
+        product_id = str(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
 
-
+        cart.update(product=product_id, quantity=product_qty)
+        
+        response = JsonResponse({'qty': product_qty})
+        return response
+    

@@ -6,11 +6,12 @@ from .models import Profile
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'displayname', 'info', 'location']
+        fields = ['image', 'first_name', 'last_name', 'phone', 'location']
         widgets = {
             'image': forms.FileInput(),
-            'displayname' : forms.TextInput(attrs={'placeholder': 'Add display name'}),
-            'info' : forms.Textarea(attrs={'rows':3, 'placeholder': 'Add information'}),
+            'first_name' : forms.TextInput(attrs={'placeholder': 'First name'}),
+            'last_name' : forms.TextInput(attrs={'placeholder': 'Last name'}),
+            'phone' : forms.TextInput(attrs={'placeholder': 'Add your phone'}),
             'location' : forms.Textarea(attrs={'rows':3, 'placeholder': 'Add Location'}),
         }
         

@@ -39,13 +39,13 @@
             @apply mb-4
         }
         .button, button, [type='submit'], [type='button'] {
-            @apply bg-indigo-600 text-white font-bold rounded-lg shadow-lg transition-all cursor-pointer
+            @apply bg-gray-800 text-white font-bold rounded-lg shadow-lg transition-all cursor-pointer
         }
         .button, button a, [type='submit'], [type='button'] {
-            @apply px-6 py-4 inline-block 
+            @apply mt-10 px-20 py-3 inline-block rounded-md
         }
         .button:hover, button:hover, [type='submit']:hover, [type='button']:hover {
-            @apply bg-indigo-700
+            @apply bg-gray-700
         }
         .button:active, button:active, [type='submit']:active, [type='button']:active {
             @apply scale-95
@@ -77,6 +77,9 @@
         .allauth content a {
             @apply underline underline-offset-2
         }
+        .allauth content input  {
+            @apply mt-3 bg-transparent border
+        }
         .allauth content a:hover {
             @apply text-indigo-500
         }
@@ -86,8 +89,8 @@
         .allauth form[action="/accounts/signup/"] ul.errorlist {
             @apply block
         }
-        .allauth .helptext {
-            @apply block mt-4
+        .allauth .helptext a{
+            @apply block mt-12
         }
         div div label {
             @apply block
@@ -115,6 +118,15 @@
         .alert-warning { @apply bg-orange-600 }
         .alert-danger { @apply bg-red-600 }
 
+        .count{
+            width: 0px;
+            margin-bottom: 20px;
+            padding-right: 3px;
+        }
+
+        .card-register{
+            height: 80dvh;
+        }
 
         .search{
                 border-radius: 0;

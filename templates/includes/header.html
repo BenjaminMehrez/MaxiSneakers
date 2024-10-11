@@ -31,14 +31,14 @@
                     Categories
                     <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
                 </a>
-                <div x-show="dropdownOpen" x-cloak class="p-3 absolute bg-white text-black shadow rounded-md z-20"
+                <div x-show="dropdownOpen" x-cloak class="w-40 absolute bg-white text-black shadow rounded-lg w-30 p-2 z-20"
                 x-transition:enter="duration-300 ease-out"
                 x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
                 x-transition:enter-end="opacity-100 translate-y-0 scale-100">
-                    <ul class="flex flex-col  gap-2">
-                        {% for category in categories %}
-                        <li><a class="hover:bg-gray-700 hover:text-white px-10 py-2 rounded-md {% if category.slug == tag.slug %}font-bold{% endif %}" href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
-                        {% endfor %}
+                    <ul class="hoverlist [&>li>a]:justify-start">
+                            {% for category in categories %}
+                            <li><a class="hover:bg-gray-100 px-10 py-2 rounded-md {% if category.slug == tag.slug %}font-bold{% endif %}" href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+                            {% endfor %}
                     </ul>
                 </div>
             </li>
@@ -50,9 +50,9 @@
                 <input class="p-1 text-black search outline-0" type="text" name="q" placeholder="Search" value="{{ query }}">
                 <button class="p-2 bg-gray-200 hover:bg-gray-300 search-lupa"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
             </form>
-            <div class="flex cart-heart ml-4 gap-1">
-                <img class="w-5 cursor-pointer" src="{% static 'images/cart.svg' %}" alt="cart">
-                <span id="cart_quantity">{{ cart|length }}</span>
+            <div class="flex items-center ml-4 gap-1">
+                <a href="{% url 'cart-summary' %}"><img class="w-6 cursor-pointer" src="{% static 'images/cart.svg' %}" alt="cart"></a>
+                <span class="count" id="cart_quantity">{{ cart|length }}</span>
                 <img class="w-5 ml-2 cursor-pointer" src="{% static 'images/heart.svg' %}" alt="heart">
             </div>
     </div>
@@ -76,7 +76,7 @@
                     {{ user.profile.name }}
                     <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
                 </a>
-                <div x-show="dropdownOpen" x-cloak class="absolute right-0 bg-white text-black shadow rounded-lg w-30 p-2 z-20"
+                <div x-show="dropdownOpen" x-cloak class="w-40 absolute right-0 bg-white text-black shadow rounded-lg w-30 p-2 z-20"
                 x-transition:enter="duration-300 ease-out"
                 x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
                 x-transition:enter-end="opacity-100 translate-y-0 scale-100">
