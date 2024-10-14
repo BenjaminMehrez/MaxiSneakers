@@ -45,14 +45,17 @@ def cart_add(request):
 
 def cart_delete(request):
     cart = Cart(request)
-    
-    if request.POST.get('action') == 'post':
-        product_id = str(request.POST.get('product_id'))
-        cart.delete(product=product_id)
+    try:
+        if request.POST.get('action') == 'post':
+            product_id = str(request.POST.get('product_id'))
+            cart.delete(product=product_id)
+            response = JsonResponse({'product': product_id})
+            messages.warning(request, 'Producto eliminado del carrito')
+            return response
+    except:
+        return messages.error(request, 'Error al eliminar producto')
         
-        response = JsonResponse({'product': product_id})
-        messages.warning(request, 'Producto eliminado del carrito')
-        return response
+        
     
 def cart_update(request):
     cart = Cart(request)

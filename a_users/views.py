@@ -2,14 +2,45 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from allauth.account.utils import send_email_confirmation
 from django.contrib.auth.decorators import login_required
+from allauth.account.views import LoginView
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from a_ecart.cart import Cart
 from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
 from a_store.models import *
 from .forms import *
+import json
+
+
 
 # Create your views here.
+
+
+
+class CustomLoginView(LoginView):
+    
+    def form_valid(self, form):
+        
+        response = super().form_valid(form)
+        current_user = Profile.objects.get(user__id=self.request.user.id)
+        saved_cart = current_user.old_cart
+        if saved_cart:
+            converted_cart = json.loads(saved_cart)
+            cart = Cart(self.request)  
+
+            for key, value in converted_cart.items():
+                try:
+                    product = Product.objects.get(id=key) 
+                    cart.add(product=product, quantity=value)
+                except Product.DoesNotExist:
+
+                    print(f"Producto con id {key} no existe")
+
+        return response
+
+
+
 
 def profile_view(request, username=None):
     if username:
