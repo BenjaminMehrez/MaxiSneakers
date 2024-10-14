@@ -1,19 +1,19 @@
 {% extends 'layouts/box.html' %}
 
 
-{% block title %}Settings Profile | {% endblock %}
+{% block title %}Configuracion | {% endblock %}
 
 
 
 {% block content %}
 
-<h1 class="mb-8">Account Settings</h1>
+<h1 class="mb-8">Configuracion</h1>
 
 <table class="w-full text-sm text-left text-gray-500">
     <tbody>
         <tr>
             <th scope="row" class="pt-4 pb-1 text-base font-bold text-gray-900">
-                Email address
+                Correo Electronico
             </th>
             <td id="email-address" class="pt-4 pb-1 pl-4">
                 {% if user.email %}{{ user.email }}{% else %}No Email{% endif %}
@@ -23,7 +23,7 @@
                     hx-get="{% url 'profile-emailchange' %}"
                     hx-target="#email-address"
                     hx-swap="innerHTML" >
-                    Edit
+                    Editar
                 </a>
             </td>
         </tr>
@@ -32,27 +32,27 @@
             </th>
             <td class="pb-4 pl-4">
                 {% if user.emailaddress_set.first.verified %}
-                <span class="text-green-500">Verified</span>{% else %}
-                <span class="text-amber-500">Not verified</span>
+                <span class="text-green-500">Verificado</span>{% else %}
+                <span class="text-amber-500">No verificado</span>
                 {% endif %}
             </td>
             <td class="pb-4 pl-4">
                 <a href="{% url 'profile-emailverify' %}" class="font-medium text-blue-600 hover:underline">
-                    {% if not user.emailaddress_set.first.verified %}Verify{% endif %}
+                    {% if not user.emailaddress_set.first.verified %}Verifica{% endif %}
                 </a>
             </td>
         </tr>
 
         <tr class="border-b">
             <th scope="row" class="py-4 text-base font-bold text-gray-900">
-                Delete Account
+                Eliminar Cuenta
             </th>
             <td class="py-4 pl-4">
-                Once deleted, account is gone. Forever.
+                Una vez eliminada, la cuenta desaparece para siempre.
             </td>
             <td class="py-4 pl-4">
                 <a href="{% url 'profile-delete' %}" class="font-medium text-red-600 hover:underline">
-                    Delete
+                    Eliminar
                 </a>
             </td>
         </tr>

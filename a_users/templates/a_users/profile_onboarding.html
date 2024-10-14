@@ -1,10 +1,10 @@
 {% extends 'layouts/box.html' %}
 
-{% block title %}Edit Profile | {% endblock %}
+{% block title %}Completa tu Profile | {% endblock %}
 
 {% block content %}
 
-<h1 class="mb-2">Complete your Profile</h1>
+<h1 class="mb-2">Completa tu Perfil</h1>
 <div class="text-center flex flex-col items-center">
     <img id="avatar" class="w-36 h-36 rounded-full object-cover mb-4" src="{{ user.profile.avatar }}" />
     <div class="text-center max-w-md">
@@ -15,8 +15,8 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" >Submit</button>
-    <a class="button secondaryAction ml-1" href="{% url 'home' %}">Skip</a>
+    <button type="submit" >Guardar</button>
+    <a class="button secondaryAction ml-1" href="{% url 'home' %}">Saltar</a>
 </form>
 
 

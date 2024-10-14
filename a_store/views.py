@@ -103,7 +103,7 @@ def product_delete_view(request, pk):
     
     if request.method == 'POST':
         product.delete()
-        messages.success(request, 'Product deleted')
+        messages.success(request, 'Producto eliminado')
         return redirect('home')
     
     categories = Tag.objects.all()
@@ -126,7 +126,7 @@ def product_edit_view(request, pk):
         form = ProductEditForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Product updated')
+            messages.success(request, 'Producto actualizado')
             return redirect('home')
     
     categories = Tag.objects.all()

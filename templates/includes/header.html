@@ -28,7 +28,7 @@
         <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             <li x-data="{ dropdownOpen: false }" class="relative">
                 <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
-                    Categories
+                    Categorias
                     <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
                 </a>
                 <div x-show="dropdownOpen" x-cloak class="w-40 absolute bg-white text-black shadow rounded-lg w-30 p-2 z-20"
@@ -47,7 +47,7 @@
     {% endif %}
     <div class="hidden md:flex items-center sm:col-start-8">
             <form class="flex" method="GET" action="{% url 'search-products' %}">
-                <input class="p-1 text-black search outline-0" type="text" name="q" placeholder="Search" value="{{ query }}">
+                <input class="p-1 text-black search outline-0" type="text" name="q" placeholder="Buscar" value="{{ query }}">
                 <button class="p-2 bg-gray-200 hover:bg-gray-300 search-lupa"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
             </form>
             <div class="flex items-center ml-4 gap-1">
@@ -61,7 +61,7 @@
     x-transition:enter-start="opacity-0 -translate-x-96"
     x-transition:enter-end="opacity-100 translate-x-0">
                 <form class="flex mt-6 justify-center" method="GET" action="{% url 'search-products' %}">
-                    <input class="p-1 search text-black outline-0" type="text" name="q" placeholder="Search" value="{{ query }}">
+                    <input class="p-1 search text-black outline-0" type="text" name="q" placeholder="Buscar" value="{{ query }}">
                     <button class="p-2 bg-gray-200 search-lupa hover:bg-gray-300"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
                 </form> 
     </nav>
@@ -71,7 +71,7 @@
     x-transition:enter-end="opacity-100 translate-x-0">
         <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             {% if request.user.is_authenticated %}
-            <li x-data="{ dropdownOpen: false }" class="hover:bg-gray-600 rounded-full relative">
+            <li x-data="{ dropdownOpen: false }" class="hover:bg-gray-600 rounded-lg relative">
                 <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
                     {{ user.profile.name }}
                     <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
@@ -81,20 +81,20 @@
                 x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
                 x-transition:enter-end="opacity-100 translate-y-0 scale-100">
                     <ul class="hoverlist [&>li>a]:justify-end">
-                        <li><a href="{% url 'profile' %}">My Profile</a></li>
-                        <li><a href="{% url 'profile-edit' %}">Edit Profile</a></li>
-                        <li><a href="{% url 'profile-settings' %}">Settings</a></li>
+                        <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
+                        <li><a href="{% url 'profile-edit' %}">Editar Perfil</a></li>
+                        <li><a href="{% url 'profile-settings' %}">Configuracion</a></li>
                         {% if request.user.is_superuser %}
-                        <li><a href="{% url 'product-create' %}">Create Product</a></li>
+                        <li><a href="{% url 'product-create' %}">Crear Producto</a></li>
                         {% endif %}
-                        <li><a href="{% url 'account_logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'account_logout' %}">Cerrar Sesion</a></li>
                     </ul>
                 </div>
             </li>
             
             {% else %}
-            <li><a class="hover:underline" href="{% url 'account_login' %}">Login</a></li>
-            <li><a class="hover:underline" href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">Signup</a></li>
+            <li><a class="hover:underline" href="{% url 'account_login' %}">Inicia sesión</a></li>
+            <li><a class="hover:underline" href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">Regístrate</a></li>
             {% endif %}
         </ul>
     </nav>

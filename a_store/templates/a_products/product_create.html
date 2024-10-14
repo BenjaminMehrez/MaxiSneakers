@@ -1,18 +1,18 @@
 {% extends 'layouts/box.html' %}
 
-{% block title %}Create Product | {% endblock %}
+{% block title %}Crear Producto | {% endblock %}
 
 
 {% block content %}
 
-<h1>Create Product</h1>
+<h1>Crear Producto</h1>
 <div class="card !p-8">
 
     <form method='POST' enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded">Submit Product</button>
-        <a class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded" href="{% url 'home' %}">Cancel</a>
+        <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded">Crear Producto</button>
+        <a class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded" href="{% url 'home' %}">Cancelar</a>
     </form>
     
 </div>

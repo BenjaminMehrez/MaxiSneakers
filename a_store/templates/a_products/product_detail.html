@@ -1,11 +1,11 @@
 <div class="detail1">
     <img class="w-full" src="{{ product.image.url }}" alt="{{ product.title }}">
 </div>
-<div class="detail2 bg-white">
+<div class="detail2 space-y-8 bg-white">
     <div class="px-6 pt-8">
         <div class="font-bold text-gray-700 text-3xl mb-7">{{ product.title }}</div>
         <span class="inline-block py-1 text-xl font-semibold text-gray-700 mr-2 mb-3">
-            {{ product.price }} €
+            $ {{ product.price }} 
         </span>
         <p>{{ product.description }}</p>
         {% for tag in product.tags.all %}
@@ -14,7 +14,7 @@
         {% endfor %}
     </div>
     <div class="flex items-center gap-5 pl-7">
-        Quantity:
+        Cantidad:
         <select id="qty-cart" class="block appearance-none  bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -25,10 +25,10 @@
         </select>
     </div>
     <div class="flex gap-2 justify-center mt-6 pb-32 mx-6">
-        <button value="{{ product.id }}" id="add-cart" class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">Add Cart</button>
+        <button value="{{ product.id }}" id="add-cart" class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">Agregar al Carrito</button>
         {% if user.is_superuser %}
-        <a class="bg-red-600 p-3 rounded hover:bg-red-800 font-bold text-white" href="{% url 'product-delete' product.id %}">Delete</a>
-        <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Edit</a>
+        <a class="bg-red-600 p-3 rounded hover:bg-red-800 font-bold text-white" href="{% url 'product-delete' product.id %}">Eliminar</a>
+        <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Editar</a>
         {% endif %}
     </div>
 </div>
@@ -47,9 +47,9 @@
             },
 
             success: function(json) {
-                console.log(json);
                 document.getElementById("cart_quantity").
                     textContent = json.qty
+                location.reload()
             },
             
             error: function(xhr,errmsg, err) {
