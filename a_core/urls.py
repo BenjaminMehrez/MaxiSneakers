@@ -10,6 +10,7 @@ urlpatterns = [
     path('',  include('a_store.urls')),
     path('cart/',  include('a_ecart.urls')),
     path('profile/', include('a_users.urls')),
+    path('payment/', include('a_payment.urls')),
     path('@<username>/', profile_view, name='profile'),
 ]
 

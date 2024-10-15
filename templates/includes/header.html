@@ -1,10 +1,10 @@
 {% load static %}
-<header x-data="{ mobilenavOpen: false, mobilesearchOpen: false }" class="header items-center [&>*]:px-10 bg-gray-800 h-16 text-white sticky top-0 z-40">
+<header x-data="{ mobilenavOpen: false, mobilesearchOpen: false }" class="header items-center [&>*]:px-10 bg-gray-300 h-16 text-white sticky top-0 z-40">
     <div class="flex items-center justify-between h-16">
         <logo>
             <a class="flex items-center gap-2" href="/">
-                <img class="w-16 mr-1 -mt-1" src="{% static 'images/logo.png' %}" alt="Logo"/>
-                <span class="textlogo text-xl font-bold">MaxiSneakers</span>
+                <img class="w-16 mr-1 -mt-1" src="{% static 'images/logo-black.png' %}" alt="Logo"/>
+                <span class="textlogo text-black text-xl font-bold">MaxiSneakers</span>
             </a>
         </logo>
         <mobileicon class="md:hidden flex gap-2 items-center">
@@ -27,9 +27,9 @@
     x-transition:enter-end="opacity-100 translate-y-0">
         <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             <li x-data="{ dropdownOpen: false }" class="relative">
-                <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
+                <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer text-black select-none">
                     Categorias
-                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
+                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-6 pr-2" src="https://img.icons8.com/small/32/0000/expand-arrow.png" alt="Dropdown" />
                 </a>
                 <div x-show="dropdownOpen" x-cloak class="w-40 absolute bg-white text-black shadow rounded-lg w-30 p-2 z-20"
                 x-transition:enter="duration-300 ease-out"
@@ -51,9 +51,9 @@
                 <button class="p-2 bg-gray-200 hover:bg-gray-300 search-lupa"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
             </form>
             <div class="flex items-center ml-4 gap-1">
-                <a href="{% url 'cart-summary' %}"><img class="w-6 cursor-pointer" src="{% static 'images/cart.svg' %}" alt="cart"></a>
+                <a href="{% url 'cart-summary' %}"><img class="w-6 cursor-pointer" src="{% static 'images/cart.png' %}" alt="cart"></a>
                 <span class="count" id="cart_quantity">{{ cart|length }}</span>
-                <img class="w-5 ml-2 cursor-pointer" src="{% static 'images/heart.svg' %}" alt="heart">
+                <img class="w-6 ml-2 cursor-pointer" src="{% static 'images/heart.png' %}" alt="heart">
             </div>
     </div>
     <nav x-show="mobilesearchOpen" x-cloak class="md:!none bg-gray-800 h-screen w-screen absolute z-[-1]"
@@ -65,16 +65,16 @@
                     <button class="p-2 bg-gray-200 search-lupa hover:bg-gray-300"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
                 </form> 
     </nav>
-    <nav x-show="mobilenavOpen" x-cloak class="col-start-9 md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto absolute md:relative z-[-1]"
+    <nav x-show="mobilenavOpen" x-cloak class="col-start-9 md:!block h-screen md:h-auto md:w-auto absolute md:relative z-[-1]"
     x-transition:enter="duration-300 ease-out"
     x-transition:enter-start="opacity-0 translate-x-96"
     x-transition:enter-end="opacity-100 translate-x-0">
-        <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
+        <ul class="flex items-center navitems text-black flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
             {% if request.user.is_authenticated %}
-            <li x-data="{ dropdownOpen: false }" class="hover:bg-gray-600 rounded-lg relative">
+            <li x-data="{ dropdownOpen: false }" class="hover:bg-gray-200 rounded-lg relative">
                 <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="cursor-pointer select-none">
                     {{ user.profile.name }}
-                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/ffffff/expand-arrow.png" alt="Dropdown" />
+                    <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/0000/expand-arrow.png" alt="Dropdown" />
                 </a>
                 <div x-show="dropdownOpen" x-cloak class="w-40 absolute right-0 bg-white text-black shadow rounded-lg w-30 p-2 z-20"
                 x-transition:enter="duration-300 ease-out"
