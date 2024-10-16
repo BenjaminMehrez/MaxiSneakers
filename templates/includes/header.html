@@ -1,5 +1,5 @@
 {% load static %}
-<header x-data="{ mobilenavOpen: false, mobilesearchOpen: false }" class="header items-center [&>*]:px-10 bg-gray-300 h-16 text-white sticky top-0 z-40">
+<header x-data="{ mobilenavOpen: false, mobilesearchOpen: false }" class="header md:flex items-center justify-between [&>*]:px-8 bg-gray-300 h-16 text-white sticky top-0 z-40">
     <div class="flex items-center justify-between h-16">
         <logo>
             <a class="flex items-center gap-2" href="/">
@@ -8,20 +8,20 @@
             </a>
         </logo>
         <mobileicon class="md:hidden flex gap-2 items-center">
-                <a @click="mobilesearchOpen = !mobilesearchOpen && mobilenavOpen == false" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
-                    <img x-show="!mobilesearchOpen" class="w-6 h-6 select-none" src="{% static 'images/search.svg' %}"/> 
-                    <img x-show="mobilesearchOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png"/>
+                <a @click="mobilesearchOpen = !mobilesearchOpen && mobilenavOpen == false" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-200 rounded-lg">
+                    <img x-show="!mobilesearchOpen" class="w-6 h-6 select-none" src="{% static 'images/search-black.svg' %}"/> 
+                    <img x-show="mobilesearchOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/0000/delete-sign.png"/>
                 </a>
-                <a href="{% url 'cart-summary' %}"><img class="w-6 cursor-pointer" src="{% static 'images/cart.svg' %}" alt="cart"></a>
-                <a href=""><img class="w-6 ml-4 cursor-pointer" src="{% static 'images/heart.svg' %}" alt="heart"></a>
-                <a @click="mobilenavOpen = !mobilenavOpen && mobilesearchOpen == false" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
-                    <img x-show="!mobilenavOpen" class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/menu.png"/> 
-                    <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/ffffff/delete-sign.png"/>
+                <a href="{% url 'cart-summary' %}"><img class="w-6 cursor-pointer" src="{% static 'images/cart.png' %}" alt="cart"></a>
+                <a href=""><img class="w-6 ml-4 cursor-pointer" src="{% static 'images/heart.png' %}" alt="heart"></a>
+                <a @click="mobilenavOpen = !mobilenavOpen && mobilesearchOpen == false" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-200 rounded-lg">
+                    <img x-show="!mobilenavOpen" class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/0000/menu.png"/> 
+                    <img x-show="mobilenavOpen" x-cloak class="w-6 h-6 select-none" src="https://img.icons8.com/small/64/0000/delete-sign.png"/>
                 </a>
         </mobileicon>
     </div>
     {% if request.resolver_match.url_name != 'account_login' and request.resolver_match.url_name != 'account_signup' %}
-    <nav x-show="mobilenavOpen" x-cloak class="hidden sm:!flex justify-center pt-2 md:pt-0 bg-gray-800 sm:h-0 md:w-20 md:mt-0 -z-10"
+    <nav x-show="mobilenavOpen" x-cloak class="hidden sm:!flex justify-center pt-2 md:pt-0 bg-gray-300 sm:h-0 md:w-20 md:mt-0 -z-10"
     x-transition:enter="duration-300 ease-out"
     x-transition:enter-start="opacity-0 -translate-y-96"
     x-transition:enter-end="opacity-100 translate-y-0">
@@ -56,7 +56,7 @@
                 <img class="w-6 ml-2 cursor-pointer" src="{% static 'images/heart.png' %}" alt="heart">
             </div>
     </div>
-    <nav x-show="mobilesearchOpen" x-cloak class="md:!none bg-gray-800 h-screen w-screen absolute z-[-1]"
+    <nav x-show="mobilesearchOpen" x-cloak class="md:!none bg-gray-300 h-screen w-screen absolute z-[-1]"
     x-transition:enter="duration-300 ease-out"
     x-transition:enter-start="opacity-0 -translate-x-96"
     x-transition:enter-end="opacity-100 translate-x-0">
@@ -65,7 +65,7 @@
                     <button class="p-2 bg-gray-200 search-lupa hover:bg-gray-300"><img class="w-7" src="{% static 'images/search-black.svg' %}" alt="search"></button>
                 </form> 
     </nav>
-    <nav x-show="mobilenavOpen" x-cloak class="col-start-9 md:!block h-screen md:h-auto md:w-auto absolute md:relative z-[-1]"
+    <nav x-show="mobilenavOpen" x-cloak class="md:!block bg-gray-300 h-screen w-screen md:h-auto md:w-auto md:mt-0 absolute md:relative z-[-1]"
     x-transition:enter="duration-300 ease-out"
     x-transition:enter-start="opacity-0 translate-x-96"
     x-transition:enter-end="opacity-100 translate-x-0">
@@ -82,7 +82,6 @@
                 x-transition:enter-end="opacity-100 translate-y-0 scale-100">
                     <ul class="hoverlist [&>li>a]:justify-end">
                         <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
-                        <li><a href="{% url 'profile-edit' %}">Editar Perfil</a></li>
                         <li><a href="{% url 'profile-settings' %}">Configuracion</a></li>
                         {% if request.user.is_superuser %}
                         <li><a href="{% url 'product-create' %}">Crear Producto</a></li>

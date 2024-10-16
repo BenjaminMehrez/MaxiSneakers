@@ -1,4 +1,5 @@
-<div class="container-cart mx-auto p-4">
+{% load humanize %}
+<div class="container-cart mx-auto p-4 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
     <div class="bg-white shadow-md rounded-lg max-w-3xl mx-auto">
         <div class="px-6 py-4 border-b border-gray-200">
             <h1 class="text-2xl font-bold">Tu carrito de compras</h1>
@@ -12,7 +13,7 @@
                         class="w-16 h-16 object-cover rounded">
                     <div class="flex-1">
                         <h3 class="font-semibold">{{ product.title }}</h3>
-                        <p class="text-sm text-gray-600">${{ product.price }}</p>
+                        <p class="text-sm text-gray-600">${{ product.price|floatformat:2|intcomma  }}</p>
                     </div>
 
                     <div class="flex items-center gap-5 pb-7">
@@ -41,9 +42,9 @@
             {% endif %}
         </div>
         <div class="border-t border-gray-200 px-6 py-4 flex justify-between items-center">
-            <div class="text-lg font-semibold">Subtotal: ${{ totals }}</div>
+            <div class="text-lg font-semibold">Subtotal: ${{ totals|floatformat:2|intcomma }}</div>
             <button
-                class="bg-blue-500 text-white px-4 py-2 rounded {% if not cart_items %}opacity-50 cursor-not-allowed{% endif %}">
+                class="bg-blue-500 text-white px-4 py-2 rounded">
                 Pagar
             </button>
         </div>

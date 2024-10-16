@@ -13,7 +13,6 @@ from .forms import *
 import json
 
 
-
 # Create your views here.
 
 
