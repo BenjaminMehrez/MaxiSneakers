@@ -1,4 +1,5 @@
 {% load humanize %}
+{% load static %}
 <div class="detail1 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
     <img class="w-full" src="{{ product.image.url }}" alt="{{ product.title }}">
 </div>
@@ -32,6 +33,10 @@
         <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Editar</a>
         {% endif %}
     </div>
+</div>
+
+<div class="absolute top-2/4" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
 </div>
 
 <script>

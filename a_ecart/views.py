@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
+from a_store.models import Tag
 from django.contrib import messages
 from a_store.models import Product
 from django.http import JsonResponse
@@ -14,10 +15,13 @@ def cart_summary(request):
     quantities = cart.get_quants
     totals = cart.cart_total()
 
+    categories = Tag.objects.all()
+    
     context = {
         'cart_products': cart_products,
         'quantities': quantities,
-        'totals': totals
+        'totals': totals,
+        'categories': categories
     }
     
     return render(request, 'a_ecart/cart_summary.html', context)

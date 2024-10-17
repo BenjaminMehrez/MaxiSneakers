@@ -1,5 +1,5 @@
 {% extends 'layouts/box.html' %}
-
+{% load static %}
 {% block title %}Eliminar Cuenta | {% endblock %}
 
 {% block content %}
@@ -12,5 +12,9 @@
     <button type="submit" class="button-red mt-6">Si, quiero eliminar mi cuenta</button>
     <a class="button button-gray ml-1" href="{{ request.META.HTTP_REFERER }}">Cancelar</a>
 </form>
+
+<div class="absolute top-40 left-80" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
+</div>
 
 {% endblock %}

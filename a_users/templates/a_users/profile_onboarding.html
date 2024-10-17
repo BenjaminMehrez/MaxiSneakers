@@ -1,5 +1,5 @@
 {% extends 'layouts/box.html' %}
-
+{% load static  %}
 {% block title %}Completa tu Profile | {% endblock %}
 
 {% block content %}
@@ -19,6 +19,9 @@
     <a class="button secondaryAction ml-1" href="{% url 'home' %}">Saltar</a>
 </form>
 
+<div class="absolute top-1/4 left-2/4" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
+</div>
 
 <script>
     

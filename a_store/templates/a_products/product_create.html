@@ -1,4 +1,5 @@
 {% extends 'layouts/box.html' %}
+{% load static %}
 
 {% block title %}Crear Producto | {% endblock %}
 
@@ -16,4 +17,11 @@
     </form>
     
 </div>
+
+
+<div class="absolute top-96 left-80" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
+</div>
+
+
 {% endblock %}

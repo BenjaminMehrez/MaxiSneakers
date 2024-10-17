@@ -1,5 +1,5 @@
 {% extends 'layouts/f.html' %}
-
+{% load static %}
 {% block title %}{{ profile.user.username }} | {% endblock %}
 {% block og-image %}{{ profile.avatar }}{% endblock %}
 {% block tw-image %}{{ profile.avatar }}{% endblock %}
@@ -89,5 +89,8 @@
     </main>
 </div>
 
+<div class="absolute top-40 left-2/4" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
+</div>
 
 {% endblock %}

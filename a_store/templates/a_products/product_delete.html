@@ -1,5 +1,5 @@
 {% extends 'layouts/b.html' %}
-
+{% load static %}
 {% block title %}{{ product.title }} | {% endblock %}
 
 
@@ -21,4 +21,9 @@
         </form>
     </div>
 </div>
+
+<div class="absolute top-2/4" hx-trigger="load">
+    <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}"/>
+</div>
+
 {% endblock %}

@@ -9,8 +9,8 @@
         {% trans "Sign In" %}
     {% endelement %}
     <p>
-        If you have not created an account yet, then please
-    <a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">sign up</a> first.
+        Si aún no ha creado una cuenta,
+    <a href="{% url 'account_signup' %}?next={% url 'profile-onboarding' %}">regístrese</a> primero.
     </p>
     {% url 'account_login' as login_url %}
     {% element form form=form method="post" action=login_url tags="entrance,login" %}
