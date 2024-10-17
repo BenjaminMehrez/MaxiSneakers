@@ -10,6 +10,8 @@ from django.contrib.auth.views import redirect_to_login
 from django.contrib import messages
 from a_store.models import *
 from .forms import *
+from a_payment.forms import ShippingAddressForm
+from a_payment.models import ShippingAddress
 import json
 
 
@@ -63,10 +65,13 @@ def profile_view(request, username=None):
 @login_required
 def profile_edit_view(request):
     form = ProfileForm(instance=request.user.profile)
-    
+    shipping_form = ShippingAddressForm(instance=request.user.profile)
+
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        shipping_form = ShippingAddressForm(request.POST, instance=request.user.profile)
         if form.is_valid():
+            shipping_form.save()
             form.save()
             
             if request.user.emailaddress_set.get(primary=True).verified:
@@ -85,7 +90,8 @@ def profile_edit_view(request):
     
     context = {
         'categories': categories,
-        'form': form
+        'form': form,
+        'shipping_form': shipping_form,
     }
         
     return render(request, template, context)

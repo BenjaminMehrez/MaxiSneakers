@@ -13,7 +13,7 @@
                         <img src="{{ product.image.url }}" alt="{{ item.product.title }}" class="w-40 object-cover rounded">
                         <div class="flex-1">
                             <h3 class="font-semibold">{{ product.title }}</h3>
-                            <p class="text-sm text-gray-600">${{ product.price|floatformat:2|intcomma  }}</p>
+                            <p class="text-sm text-gray-600">${{ product.price|floatformat:2|intcomma }}</p>
                         </div>
     
                         <div class="flex items-center gap-5 pb-7">
@@ -45,10 +45,7 @@
         {% if cart_products %}
         <div class="border-t border-gray-200 px-6 py-4 flex justify-between items-end">
             <div class="text-lg font-semibold">Subtotal: ${{ totals|floatformat:2|intcomma }}</div>
-            <button
-                class="bg-blue-500 text-white px-4 py-2 rounded">
-                Pagar
-            </button>
+            <a href="{% url 'payment-checkout' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Verificar Compra</a>
         </div>
         {% endif %}
 </div>

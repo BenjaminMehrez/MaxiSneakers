@@ -1,0 +1,40 @@
+{% load humanize %}
+{% load static %}
+<div class="flex flex-col justify-between rounded p-4 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h1 class="text-2xl font-bold">Verificar Compra</h1>
+            </div>
+            <div class="p-6">
+                <ul class="flex flex-col">
+                    {% for product in cart_products %}
+                    <li class="flex flex-col sm:flex-row items-center space-x-4 my-2">
+                        <img src="{{ product.image.url }}" alt="{{ item.product.title }}" class="w-40 object-cover rounded">
+                        <div class="flex-1">
+                            <h3 class="font-semibold">{{ product.title }}</h3>
+                            <p class="text-sm text-gray-600">${{ product.price|floatformat:2|intcomma }}</p>
+                        </div>
+                        <p>Cantidad:
+                        {% for key, value in quantities.items %}
+                            {% if key == product.id|slugify %}
+                                    <option selected>{{ value }}</option>
+                            {% endif %}
+                        {% endfor %}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+            <div class="card p-6">
+                <h2>Direccion</h2>
+                {{ form.as_p }}
+            </div>
+
+            <div class="border-t border-gray-200 px-6 py-4 flex justify-between items-end">
+                <div class="text-lg font-semibold">Subtotal: ${{ totals|floatformat:2|intcomma }}</div>
+                <a href="{% url 'cart-summary' %}" class="bg-blue-500 text-white px-2 py-2 rounded">Actualizar Carrito</a>
+                <a href="{% url 'payment-checkout' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Ir a Pagar</a>
+            </div>
+
+</div>
+
