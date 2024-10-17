@@ -36,8 +36,17 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
     
-ALLOWED_HOSTS = ['*']
+    
+    
+ALLOWED_HOSTS = ['*', 'https://maxisneakers.onrender.com']
 
+CORS_ALLOWED_ORIGINS = [
+    'https://maxisneakers.onrender.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://maxisneakers.onrender.com",
+]
 
 INTERNAL_IPS = (
     '127.0.0.1',
