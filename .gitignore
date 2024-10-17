@@ -1,6 +1,7 @@
 venv/
 node/
 media/
+static/
 migrations/
 __pycache__/
 db.sqlite3

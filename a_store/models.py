@@ -1,14 +1,22 @@
 from django.db import models
 from a_users.models import Profile
 import uuid
+from django.conf import settings
 
+if settings.ENVIRONMENT == 'production':
+    from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 
 class Product(models.Model):
     title = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='image/', null=True, blank=True)
+    
+    if settings.ENVIRONMENT == 'production':
+        image = CloudinaryField(null=True, blank=True)
+    else:
+        image = models.ImageField(upload_to='image/', null=True, blank=True)
+        
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=1000, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)

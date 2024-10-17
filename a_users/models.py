@@ -2,14 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.templatetags.static import static
 from django.conf import settings
-
+if settings.ENVIRONMENT == 'production':
+    from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='avatars/', null=True, blank=True) # blank signify that can is empty, null can save something empty
+    if settings.ENVIRONMENT == 'production':
+        image = CloudinaryField( null=True, blank=True) 
+    else:
+        image = models.ImageField(upload_to='avatars/', null=True, blank=True) # blank signify that can is empty, null can save something empty
+    
     first_name = models.CharField(max_length=10, null=True)
     last_name = models.CharField(max_length=10, null=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
