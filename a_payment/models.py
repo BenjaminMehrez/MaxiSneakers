@@ -10,9 +10,9 @@ class ShippingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shipping_full_name = models.CharField(max_length=20)
     shipping_email = models.EmailField(max_length=40)
-    shipping_address1 = models.CharField(max_length=255)
-    shipping_address2 = models.CharField(max_length=255, blank=True, null=True)  # Opcional
-    shipping_state = models.CharField(max_length=100)
+    shipping_address = models.CharField(max_length=255)
+    shipping_street = models.CharField(max_length=255, blank=True, null=True)  # Opcional
+    shipping_city = models.CharField(max_length=100)
     shipping_zipcode = models.CharField(max_length=20)
     shipping_country = models.CharField(max_length=100)
     

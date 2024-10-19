@@ -64,15 +64,18 @@ def profile_view(request, username=None):
     
 @login_required
 def profile_edit_view(request):
-    form = ProfileForm(instance=request.user.profile)
-    shipping_form = ShippingAddressForm(instance=request.user.profile)
+    current_user = Profile.objects.get(user__id=request.user.id)
+    shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
+    
+    form = ProfileForm(instance=current_user)
+    shipping_form = ShippingAddressForm(instance=shipping_user)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        shipping_form = ShippingAddressForm(request.POST, instance=request.user.profile)
-        if form.is_valid():
-            shipping_form.save()
+        form = ProfileForm(request.POST, request.FILES, instance=current_user)
+        shipping_form = ShippingAddressForm(request.POST, instance=shipping_user)
+        if form.is_valid() or shipping_form.is_valid():
             form.save()
+            shipping_form.save()
             
             if request.user.emailaddress_set.get(primary=True).verified:
                 return redirect('profile')

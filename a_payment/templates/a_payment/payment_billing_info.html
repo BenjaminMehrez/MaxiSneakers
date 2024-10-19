@@ -3,10 +3,10 @@
 <div class="p-4 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
 
         <div class="md:px-6 py-4 text-center md:text-start">
-            <h1 class="text-2xl font-bold underline">Verificar Compra</h1>
+            <h1 class="text-2xl font-bold underline">Pagar</h1>
         </div>
 
-        <div class="flex flex-col text-center md:flex-row gap-10">
+        <div class="flex flex-col text-center md:flex-row gap-20">
             <div class="">
                 <ul class="flex flex-col">
                     <h2 class="border-b p-4 mb-6">Orden</h2>
@@ -29,21 +29,26 @@
                 </ul>
             </div>
     
+
             <div class="md:text-start">
                 <h2 class="border-b p-4 md:mb-6 text-center mb-6">Direccion</h2>
                     <form method="POST" action="{% url 'billing-info' %}" class="flex flex-col md:flex-row justify-center max-w-3xl gap-4">
-                        <div class="flex flex-wrap gap-8 justify-center">
-                            {% csrf_token %}
-                            {{ form.as_p }}
+                        <div class="flex flex-col flex-wrap gap-8 justify-center">
+                            <span>Nombre: {{ form.shipping_full_name }}</span>
+                            <span>Correo: {{ form.shipping_email }}</span>
+                            <span>Direccion: {{ form.shipping_address }}</span>
+                            <span>Calle: {{ form.shipping_street }}</span>
+                            <span>Codigo Postal: {{ form.shipping_zipcode }}</span>
+                            <span>Ciudad: {{ form.shipping_city }}</span>
+                            <span>País: {{ form.shipping_country }}</span>
                         </div>
                         <div class="border-t md:border-0 border-gray-200 flex flex-col pt-8 space-y-8 text-center">
                             <p class="text-lg font-semibold">Subtotal: ${{ totals|floatformat:2|intcomma }}</p>
-                            <a href="{% url 'cart-summary' %}" class="hover:bg-blue-800 text-white bg-blue-600  p-4 rounded transition font-bold">Actualizar Carrito</a>
-                            <button class="p-4 text-white hover:bg-green-800 bg-green-600 rounded transition">Confirmar Pedido</button>
+                            <a href="{% url 'payment-checkout' %}" class="hover:bg-blue-800 text-white bg-blue-600  p-4 rounded transition font-bold">Actualizar Direccion</a>
+                            <button class="p-4 text-white hover:bg-blue-400 bg-blue-500 rounded transition">Ir a Pagar</button>
                         </div>
                     </form>
             </div>
-    
         </div>
 
 

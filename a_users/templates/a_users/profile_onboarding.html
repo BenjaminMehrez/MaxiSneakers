@@ -13,8 +13,12 @@
     </div>
 </div>
 <form method="POST" enctype="multipart/form-data">
+    <p>Informacion Personal </p>
     {% csrf_token %}
     {{ form.as_p }}
+    <br>
+    <p>Direccion</p>
+    {{ shipping_form.as_p }}
     <button type="submit" >Guardar</button>
     <a class="button secondaryAction ml-1" href="{% url 'home' %}">Saltar</a>
 </form>

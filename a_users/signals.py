@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from allauth.account.models import EmailAddress
 from django.contrib.auth.models import User
 from .models import Profile
+from a_payment.models import ShippingAddress
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
@@ -13,10 +14,18 @@ def create_profile(sender, instance, created, **kwargs):
             user=user,
             email=user.email
         )
+        ShippingAddress.objects.create(
+            user=user,
+            shipping_email=user.email
+        )
     else:
         profile = get_object_or_404(Profile, user=user)
         profile.email = user.email
         profile.save()
+            
+        shipping_address = get_object_or_404(ShippingAddress, user=user)
+        shipping_address.shipping_email = user.email
+        shipping_address.save()
 
 
 @receiver(post_save, sender=Profile)

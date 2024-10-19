@@ -19,9 +19,6 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=10, null=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(unique=True, null=True)
-    city = models.CharField(max_length=200, null=True, blank=True)
-    zipcode = models.CharField(max_length=200, blank=True)
-    country = models.CharField(max_length=200, blank=True)
     old_cart = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(User, auto_now_add=True)
     
