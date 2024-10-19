@@ -18,7 +18,7 @@ class Product(models.Model):
         image = models.ImageField(upload_to='image/', null=True, blank=True)
         
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=1000, decimal_places=2)
+    price = models.DecimalField(max_digits=1000, decimal_places=0)
     stock = models.PositiveIntegerField(default=0)
     active = models.BooleanField(default=True)
     tags = models.ManyToManyField('Tag')

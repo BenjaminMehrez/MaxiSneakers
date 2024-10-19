@@ -160,8 +160,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'es'
-USE_THOUSAND_SEPARATOR = ''
+LANGUAGE_CODE = 'es-ar'
+# USE_L10N = True
+# USE_THOUSAND_SEPARATOR = True
+# DECIMAL_SEPARATOR = ','
+# THOUSAND_SEPARATOR = '.'
 
 TIME_ZONE = 'UTC'
 

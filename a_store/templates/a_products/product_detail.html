@@ -1,4 +1,4 @@
-{% load humanize %}
+{% load price_filters %}
 {% load static %}
 <div class="detail1 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
     <img class="w-full" src="{{ product.image.url }}" alt="{{ product.title }}">
@@ -7,7 +7,7 @@
     <div class="px-6 pt-8">
         <div class="font-bold text-gray-700 text-3xl mb-7">{{ product.title }}</div>
         <span class="inline-block py-1 text-xl font-semibold text-gray-700 mr-2 mb-3">
-            $ {{ product.price|floatformat:2|intcomma }} 
+            $ {{ product.price|formato_precio }} 
         </span>
         <p>{{ product.description }}</p>
         {% for tag in product.tags.all %}
