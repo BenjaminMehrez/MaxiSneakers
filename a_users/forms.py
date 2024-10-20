@@ -13,6 +13,12 @@ class ProfileForm(ModelForm):
             'last_name' : forms.TextInput(attrs={'placeholder': 'Apellido'}),
             'phone' : forms.TextInput(attrs={'placeholder': 'Numero de Telefono'}),
         }
+        labels = {
+            'image': '',
+            'first_name': '',
+            'last_name': '',
+            'phone': '',
+        }
         
         
 class EmailForm(ModelForm):

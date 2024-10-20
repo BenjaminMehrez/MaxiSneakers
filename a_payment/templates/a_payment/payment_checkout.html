@@ -36,7 +36,7 @@
                             {% csrf_token %}
                             <span class="w-full xl:w-60">Nombre: {{ form.shipping_full_name }}</span>
                             <span class="w-full xl:w-60">Correo: {{ form.shipping_email }}</span>
-                            <span class="w-full xl:w-auto">Direccion: {{ form.shipping_address }}</span>
+                            <span class="w-full xl:w-full">Direccion: {{ form.shipping_address }}</span>
                             <span class="w-full xl:w-60">Calle y número: {{ form.shipping_street }}</span>
                             <span class="w-full xl:w-60">Codigo Postal: {{ form.shipping_zipcode }}</span>
                             <span class="w-full xl:w-60">Ciudad: {{ form.shipping_city }}</span>
