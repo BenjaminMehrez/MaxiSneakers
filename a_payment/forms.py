@@ -27,3 +27,16 @@ class ShippingAddressForm(ModelForm):
             'shipping_city': 'Provincia',
             'shipping_country': 'País',
         }
+
+
+class PaymentForm(forms.Form):
+    card_name = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Nombre completo'}), required=True)
+    card_number = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Numero de tarjeta'}), required=True)
+    card_exp_date = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Fecha de vencimiento'}), required=True)
+    card_cvv_number = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'CVV'}), required=True)
+    card_address = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Direccion'}), required=True)
+    card_city = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Provincia'}), required=True)
+    card_zipcode = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Codigo Postal'}), required=True)
+    card_country = forms.CharField(label= "", widget=forms.TextInput(attrs={'placeholder': 'Argentina'}), required=True)
+    
+    
