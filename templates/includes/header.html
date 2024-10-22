@@ -84,6 +84,8 @@
                         <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
                         <li><a href="{% url 'profile-settings' %}">Configuracion</a></li>
                         {% if request.user.is_superuser %}
+                        <li><a href="{% url 'not-shipped-dash' %}">Pedidos no enviados</a></li>
+                        <li><a href="{% url 'shipped-dash' %}">Pedidos Enviados</a></li>
                         <li><a href="{% url 'product-create' %}">Crear Producto</a></li>
                         {% endif %}
                         <li><a href="{% url 'account_logout' %}">Cerrar Sesion</a></li>

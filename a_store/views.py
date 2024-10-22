@@ -75,7 +75,7 @@ def search_products(request):
         'categories': categories
     }
 
-    return render(request, 'a_products/search_page.html', context)
+    return render(request, 'a_products/search_products.html', context)
 
 @user_passes_test(admin_required)
 def product_create_view(request):

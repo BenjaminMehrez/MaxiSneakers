@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from a_ecart.cart import Cart
 from django.contrib import messages
 from .forms import ShippingAddressForm, PaymentForm
@@ -8,6 +8,73 @@ from a_users.models import Profile
 
 
 # Create your views here.
+
+
+def orders(request, pk):
+	if request.user.is_authenticated and request.user.is_superuser:
+		order = get_object_or_404(Order, id=pk)
+		items = OrderItem.objects.filter(order=pk)
+
+		if request.POST:
+			status = request.POST['shipping_status']
+			
+			if status == 'true':
+				order = Order.objects.filter(id=pk)
+				now = datetime.datetime.now()
+				order.update(shipped=True, date_shipped = now)
+			else:
+				order = Order.objects.filter(id=pk)
+				order.update(shipped=False)
+			messages.success(request, 'Shipping Status Updated')
+			return redirect('home')
+ 
+		return render(request, 'a_payment/payment_order.html', {'order': order, 'items':items})
+	else:
+		messages.warning(request, 'Access Denied')
+		return redirect('home')
+
+
+
+def not_shipped_dash(request):
+	
+	if request.user.is_authenticated and request.user.is_superuser:
+		orders = Order.objects.filter(shipped=False)
+		if request.POST:
+			status = request.POST['shipping_status']
+			num = request.POST['num']
+			order = Order.objects.filter(id=num)
+			now = datetime.datetime.now()
+			order.update(shipped=True, date_shipped = now)
+
+			messages.success(request, 'Shipping Status Updated')
+			return redirect('home')
+
+		return render(request, 'a_payment/payment_not_shipped_dash.html', {'orders': orders})
+	else:
+		messages.warning(request, 'Access Denied')
+		return redirect('home')
+	
+
+
+def shipped_dash(request):
+    
+	if request.user.is_authenticated and request.user.is_superuser:
+		orders = Order.objects.filter(shipped=True)
+		if request.POST:
+			status = request.POST['shipping_status']
+			num = request.POST['num']
+			order = Order.objects.filter(id=num)
+	
+			now = datetime.datetime.now()
+			order.update(shipped=False)
+
+			messages.success(request, 'Shipping Status Updated')
+			return redirect('home')
+
+		return render(request, 'a_payment/payment_shipped_dash.html', {'orders': orders})
+	else:
+		messages.warning(request, 'Access Denied')
+		return redirect('home')
 
 
 def process_order(request):
@@ -135,7 +202,7 @@ def billing_info(request):
 
         if request.user.is_authenticated:
             billing_form = PaymentForm()
-            return render(request, 'a_payment/payment_page_billing_info.html', {'cart_products': cart_products,
+            return render(request, 'a_payment/payment_billing_info.html', {'cart_products': cart_products,
                                                                                 'quantities': quantities,
                                                                                 'totals': totals,
                                                                                 'form': request.POST,
@@ -143,7 +210,7 @@ def billing_info(request):
                                                                                 })
         else:
             billing_form = PaymentForm()
-            return render(request, 'a_payment/payment_page_billing_info.html', {'cart_products': cart_products,
+            return render(request, 'a_payment/payment_billing_info.html', {'cart_products': cart_products,
                                                                                 'quantities': quantities,
                                                                                 'totals': totals,
                                                                                 'form': request.POST,
@@ -166,13 +233,13 @@ def checkout(request):
         shipping_user = ShippingAddress.objects.get(user__id=request.user.id)
         form = ShippingAddressForm(
             request.POST or None, instance=shipping_user)
-        return render(request, 'a_payment/payment_page.html', {'cart_products': cart_products,
+        return render(request, 'a_payment/payment_checkout.html', {'cart_products': cart_products,
                                                                'quantities': quantities,
                                                                'totals': totals,
                                                                'form': form, })
     else:
         form = ShippingAddressForm(request.POST or None)
-        return render(request, 'a_payment/payment_page.html', {'cart_products': cart_products,
+        return render(request, 'a_payment/payment_checkout.html', {'cart_products': cart_products,
                                                                'quantities': quantities,
                                                                'totals': totals,
                                                                'form': form, })
