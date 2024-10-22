@@ -51,6 +51,10 @@
                     </div>
             </div>
 
+            <div>
+                {{ paypal_form.render }}
+            </div>
+
             <div class="text-start">
                 <h2 class="border-b p-4 md:mb-6 text-center mb-6">Pagar con Tarjeta</h2>
                 <form method="POST" action="{% url 'process-order' %}">

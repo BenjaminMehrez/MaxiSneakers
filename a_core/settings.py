@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'paypal.standard.ipn',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -215,3 +216,10 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_USERNAME_BACKLIST = [ 'admin', 'accounts', 'profile']
+
+
+# Paypal settings
+
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'maxibusiness@gmail.com'
+
