@@ -46,6 +46,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "https://maxisneakers.onrender.com",
+    'https://3509-2803-9800-9844-9537-7b42-eb7e-f0b3-72a6.ngrok-free.app'
 ]
 
 INTERNAL_IPS = (
