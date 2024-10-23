@@ -198,15 +198,15 @@ def billing_info(request):
         host = request.get_host()
         # Create Paypal Form
         paypal_dict = {
-            'bussiness': settings.PAYPAL_RECEIVER_EMAIL,
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
             'amount': totals,
             'item_name': 'Sneaker Order',
             'no_shipping': '2',
             'invoice': str(uuid.uuid4()),
-            'currency_code': 'USD',
-            'notify_url': 'https://{}{}'.format(host, reverse('paypal-ipn')),
-            'return_url': 'https://{}{}'.format(host, reverse('payment-success')),
-            'cancel_return': 'https://{}{}'.format(host, reverse('payment-failed')),
+            'currency_code': 'USD', # EUR for Euros
+            'notify_url': 'https://{}{}'.format(host, reverse("paypal-ipn")),
+            'return_url': 'https://{}{}'.format(host, reverse("payment-success")),
+            'cancel_return': 'https://{}{}'.format(host, reverse("payment-failed")),
         }
         
         paypal_form = PayPalPaymentsForm(initial=paypal_dict)
