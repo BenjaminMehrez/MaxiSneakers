@@ -21,7 +21,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=1000, decimal_places=0)
     stock = models.PositiveIntegerField(default=0)
     active = models.BooleanField(default=True)
-    tags = models.ManyToManyField('Tag')
+    tags = models.ForeignKey('Tag', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=100, default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     

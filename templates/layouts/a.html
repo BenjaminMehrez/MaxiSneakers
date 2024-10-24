@@ -9,7 +9,7 @@
         <div @click="mobileSidebarOpen = !mobileSidebarOpen" class="mt-20">
             <ul class="flex items-center navitems flex-col md:flex-row gap-8 md:gap-0 justify-center h-full -translate-y-10 md:translate-y-0">
                 <li x-data="{ dropdownOpen: false }" class="relative">
-                    <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="hover:text-white text-lg cursor-pointer font-bold select-none">
+                    <a @click="dropdownOpen = !dropdownOpen" @click.away="dropdownOpen = false" class="text-lg cursor-pointer font-bold select-none">
                         Category
                         <img x-bind:class="dropdownOpen && 'rotate-180 duration-300'" class="w-4" src="https://img.icons8.com/small/32/000000/expand-arrow.png" alt="Dropdown" />
                     </a>
@@ -27,7 +27,7 @@
             </ul>
         </div>
     </mobileSidebarNav>
-    <main class="flex flex-wrap justify-center gap-8 mt-10 mb-40">
+    <main class="flex flex-wrap gap-8 justify-center mt-10 mb-40">
 
         {% block content %}
         {% endblock %}

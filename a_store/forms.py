@@ -8,17 +8,14 @@ class ProductCreateForm(ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'image', 'description', 'price', 'stock', 'tags']
-        labels = {
-            'tags': 'Category'
-        }
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Agrega Titulo ...'}),
-            'image': forms.FileInput(),
-            'description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Agrega descripcion ...'}),
-            'price': forms.NumberInput(attrs={'step': 0.01, 'min': '0', 'placeholder': 'Agrega precio ...'}),
-            'stock': forms.NumberInput(attrs={'min': '0'}),
-            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'flex p-5 justify-start gap-10 text-xl'}),
-        }
+            'title': forms.TextInput(attrs={'placeholder': 'Agrega Titulo ...','id': 'product-title'}),
+            'image': forms.FileInput(attrs={'class': 'hidden', 'id': 'file-upload'}),
+            'description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Agrega descripcion ...','id': 'product-description'}),
+            'price': forms.NumberInput(attrs={'step': 0.01, 'min': '0', 'placeholder': 'Agrega precio  ...','id': 'product-price'}),
+            'stock': forms.NumberInput(attrs={'min': '0','id': 'product-stock'}),
+            'tags': forms.RadioSelect(attrs={'class': 'flex gap-4 mt-3 form-radio h-6 w-6 text-black','id': 'product-tags'}),
+        }  
         
         
         
@@ -27,14 +24,11 @@ class ProductEditForm(ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'image', 'description', 'price', 'stock', 'tags']
-        labels = {
-            'tags': 'Category'
-        }
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Agrega Titulo ...'}),
-            'image': forms.FileInput(),
-            'description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Agrega descripcion ...'}),
-            'price': forms.NumberInput(attrs={'step': 0.01, 'min': '0', 'placeholder': 'Agrega precio  ...'}),
-            'stock': forms.NumberInput(attrs={'min': '0'}),
-            'tags': forms.CheckboxSelectMultiple(attrs={'class': 'flex p-5 justify-start gap-10 text-xl'}),
-        }
+            'title': forms.TextInput(attrs={'placeholder': 'Agrega Titulo ...','id': 'product-title'}),
+            'image': forms.FileInput(attrs={'class': 'hidden', 'id': 'file-upload'}),
+            'description': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Agrega descripcion ...','id': 'product-description'}),
+            'price': forms.NumberInput(attrs={'step': 0.01, 'min': '0', 'placeholder': 'Agrega precio  ...','id': 'product-price'}),
+            'stock': forms.NumberInput(attrs={'min': '0','id': 'product-stock'}),
+            'tags': forms.RadioSelect(attrs={'class': 'flex gap-4 mt-3 form-radio h-6 w-6 text-black','id': 'product-tags'}),
+        }   

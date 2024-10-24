@@ -1,4 +1,4 @@
-{% extends 'layouts/box.html' %}
+{% extends 'layouts/g.html' %}
 {% load static %}
 
 {% block title %}Crear Producto | {% endblock %}
@@ -6,14 +6,45 @@
 
 {% block content %}
 
-<h1>Crear Producto</h1>
-<div class="card !p-8">
+<div class="flex flex-col gap-5 px-10">
+    
+    <h1>Crear Producto</h1> 
 
-    <form method='POST' enctype="multipart/form-data">
+    <form class="flex flex-col gap-4" method='POST' enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
-        <button class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded">Crear Producto</button>
-        <a class="bg-gray-900 hover:bg-gray-700 text-white font-bold py-5 px-4 rounded" href="{% url 'home' %}">Cancelar</a>
+        <label for="file-upload" class="flex flex-col mb-3 items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+            <div class="flex flex-col items-center justify-center">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                <p id="file-upload-filename" class="mt-2 text-sm text-gray-600">Selecciona un archivo</p>
+            </div>
+            {{ form.image }}
+        </label>
+        <label for="product-title">
+            Titulo:
+            {{ form.title }}
+        </label>
+        <label for="product-description">
+            Descripcion:
+            {{ form.description }}
+        </label>
+        <label for="product-price">
+            Precio:
+            {{ form.price }}
+        </label>
+        <label for="product-stock">
+            Stock:
+            {{ form.stock }}
+        </label>
+        <label for="product-tags">
+            Marca:
+            {{ form.tags }}
+        </label>
+        <div class="flex flex-col gap-5 text-white text-center mt-20">
+            <button class="p-4 bg-gray-800 hover:bg-gray-500 rounded">Guardar Cambios</button>
+            <a class="p-4 bg-gray-800 hover:bg-gray-500 rounded font-bold" href="{% url 'home' %}">Regresar</a>
+        </div>
     </form>
     
 </div>

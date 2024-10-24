@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="flex flex-col ">
+<div class="flex flex-col px-10 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
     <h1 class="mb-2 text-3xl">Editar Perfil</h1>
     <div class="text-center flex flex-col items-center">
         <img id="avatar" class="w-36 h-36 rounded-full object-cover mb-4" src="{{ user.profile.avatar }}" />
@@ -20,18 +20,18 @@
             {{ form.as_p }}
         </div>
         <div>
-            <h2>Direccion</h2>
+            <h2 class="mb-5 ">Direccion</h2>
             {{ shipping_form.as_p }}
         </div>
+        <button type="submit">Guardar Cambios</button>
         <a class="button secondaryAction text-center" href="{% url 'home' %}">Cancelar</a>
-        <button type="submit">Guardar</button>
     </form>
     
     <a class="hover:underline text-gray-500 mt-16" href="{% url 'profile-delete' %}">Eliminar Perfil</a>
 </div>
 
 
-<div class="absolute top-1/4 left-2/4" hx-trigger="load">
+<div class="absolute top-1/2" hx-trigger="load">
     <img alt="Result loading..." class="htmx-indicator loader" width="150" src="{% static 'images/logo.png' %}" />
 </div>
 
