@@ -21,13 +21,13 @@
                             <h3 class="font-semibold">{{ product.title }}</h3>
                             <p class="text-sm text-gray-600">${{ product.price|formato_precio }}</p>
                         </div>
-                        <p>Cantidad:
+                        <medium>Cantitad: 
                             {% for key, value in quantities.items %}
-                            {% if key == product.id|slugify %}
-                                <option class="font-bold" selected>{{ value }}</option>
-                            {% endif %}
+                                {% if key == product.id|slugify %}
+                                    {{ value }}
+                                {% endif %}
                             {% endfor %}
-                        </p>
+                        </medium>
                     </li>
                     {% endfor %}
                 </ul>
