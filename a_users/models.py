@@ -20,6 +20,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(unique=True, null=True)
     old_cart = models.CharField(max_length=200, blank=True, null=True)
+    old_favorite = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(User, auto_now_add=True)
     
     

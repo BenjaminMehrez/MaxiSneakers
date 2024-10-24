@@ -26,6 +26,7 @@
     </div>
     <div class="flex gap-2 justify-center pt-16 pb-32 md:p-0 mx-auto">
         <button value="{{ product.id }}" id="add-cart" class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">Agregar al Carrito</button>
+        <button value="{{ product.id }}" id="add-favorite" class="{% if user.is_superuser %} hidden {% endif %}">me gusta</button>
         {% if user.is_superuser %}
         <a class="bg-red-600 p-3 rounded hover:bg-red-800 font-bold text-white" href="{% url 'product-delete' product.id %}">Eliminar</a>
         <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Editar</a>
@@ -38,6 +39,7 @@
 </div>
 
 <script>
+
     $(document).on('click', '#add-cart', function(e) {
         e.preventDefault()
         $.ajax({
@@ -61,4 +63,26 @@
             }
         })
     })
+
+    $(document).on('click', '#add-favorite', function(e) {
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: '{% url "favorite-add" %}',
+            data: {
+                product_id: $('#add-favorite').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+            success: function(json) {
+                location.reload()
+            },
+            
+            error: function(xhr,errmsg, err) {
+                
+            }
+        })
+    })
+
 </script>
