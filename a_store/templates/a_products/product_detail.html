@@ -5,7 +5,6 @@
 </div>
 <div class="h-full w-full max-w-xl md:max-w-md md:max-h-xl p-10 space-y-8 bg-white opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
     <div class="">
-        <div class="font-bold text-gray-700 text-3xl mb-7">{{ product.title }}</div>
         <span class="inline-block py-1 text-xl font-semibold text-gray-700 mr-2 mb-3">
             $ {{ product.price|formato_precio }} 
         </span>
@@ -24,14 +23,14 @@
                 <option value="6">6</option>
         </select>
     </div>
-    <div class="flex gap-2 justify-center pt-16 pb-32 md:p-0 mx-auto">
+    <div class="flex gap-2  items-center pt-16 pb-32 md:p-0 mx-auto">
         <button value="{{ product.id }}" id="add-cart" class="{% if user.is_superuser %} hidden {% endif %}bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-8 rounded">Agregar al Carrito</button>
-        <button value="{{ product.id }}" id="add-favorite" class="{% if user.is_superuser %} hidden {% endif %}">me gusta</button>
         {% if user.is_superuser %}
         <a class="bg-red-600 p-3 rounded hover:bg-red-800 font-bold text-white" href="{% url 'product-delete' product.id %}">Eliminar</a>
         <a class="bg-green-600 p-3 rounded hover:bg-green-800 font-bold text-white" href="{% url 'product-edit' product.id %}">Editar</a>
         {% endif %}
     </div>
+
 </div>
 
 <div class="absolute top-2/4" hx-trigger="load">
@@ -55,27 +54,6 @@
             success: function(json) {
                 document.getElementById("cart_quantity").
                     textContent = json.qty
-                location.reload()
-            },
-            
-            error: function(xhr,errmsg, err) {
-                
-            }
-        })
-    })
-
-    $(document).on('click', '#add-favorite', function(e) {
-        e.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: '{% url "favorite-add" %}',
-            data: {
-                product_id: $('#add-favorite').val(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
-            },
-
-            success: function(json) {
                 location.reload()
             },
             

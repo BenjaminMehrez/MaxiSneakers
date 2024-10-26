@@ -1,5 +1,5 @@
 from django.db import models
-from a_users.models import Profile
+from django.contrib.auth.models import User
 import uuid
 from django.conf import settings
 
@@ -11,12 +11,10 @@ if settings.ENVIRONMENT == 'production':
 
 class Product(models.Model):
     title = models.CharField(max_length=150)
-    
     if settings.ENVIRONMENT == 'production':
         image = CloudinaryField(null=True, blank=True)
     else:
         image = models.ImageField(upload_to='image/', null=True, blank=True)
-        
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=1000, decimal_places=0)
     stock = models.PositiveIntegerField(default=0)

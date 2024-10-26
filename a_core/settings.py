@@ -42,12 +42,12 @@ ALLOWED_HOSTS = ['*', 'https://maxisneakers.onrender.com']
 
 CORS_ALLOWED_ORIGINS = [
     'https://maxisneakers.onrender.com',
-    'https://eb37-2803-9800-9844-9537-305a-9bb6-9e40-e43d.ngrok-free.app'
+    'https://439f-2803-9800-9844-9537-ae9e-a68e-4dab-78ec.ngrok-free.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://maxisneakers.onrender.com",
-    "https://eb37-2803-9800-9844-9537-305a-9bb6-9e40-e43d.ngrok-free.app"
+    "https://439f-2803-9800-9844-9537-ae9e-a68e-4dab-78ec.ngrok-free.app"
 ]
 
 INTERNAL_IPS = (
@@ -76,7 +76,6 @@ INSTALLED_APPS = [
     'a_store',
     'a_ecart',
     'a_payment',
-    'a_favorite'
     
 ]
 

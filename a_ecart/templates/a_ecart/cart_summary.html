@@ -4,7 +4,7 @@
 
 {% load price_filters %}
 {% load static %}
-<div class="flex flex-col text-center justify-between rounded p-4 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
+<div class="flex flex-col h-screen text-center justify-between rounded p-4 opacity-0" _="on load transition my opacity to 1 over 0.3 seconds">
         <div>
             <div class="py-4 border-b border-gray-200">
                 <h1 class="text-2xl font-bold">Tu carrito de compras</h1>
@@ -37,7 +37,7 @@
                             </select>
                             <div class="flex gap-5">
                                 <button data-index="{{ product.id }}" class="p-3 update-cart text-sm">Actualizar</button>
-                                <button id="delete-product" data-index="{{ product.id }}" class="w-10 p-2 bg-red-600 hover:bg-red-800 update-cart text-sm"><img class="w-full" src="https://img.icons8.com/small/64/ffffff/delete-sign.png" alt="delete-product"></button>
+                                <button id="delete-product" data-index="{{ product.id }}" class="w-10 p-2 bg-red-600 hover:bg-red-800 text-sm"><img class="w-full" src="https://img.icons8.com/small/64/ffffff/delete-sign.png" alt="delete-product"></button>
                             </div>
                         </div>
                     </li>
