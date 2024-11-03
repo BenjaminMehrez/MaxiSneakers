@@ -38,16 +38,14 @@ else:
     
     
     
-ALLOWED_HOSTS = ['*', 'https://maxisneakers.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 CORS_ALLOWED_ORIGINS = [
-    'https://maxisneakers.onrender.com',
-    'https://439f-2803-9800-9844-9537-ae9e-a68e-4dab-78ec.ngrok-free.app'
+    'https://maxisneakers.up.railway.app',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://maxisneakers.onrender.com",
-    "https://439f-2803-9800-9844-9537-ae9e-a68e-4dab-78ec.ngrok-free.app"
+    "https://maxisneakers.up.railway.app",
 ]
 
 INTERNAL_IPS = (
@@ -127,8 +125,11 @@ WSGI_APPLICATION = 'a_core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-POSTGRES_LOCALLY = False
+# Use database local
+POSTGRES_LOCALLY = True
 
+
+# Settings DATEBASE
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     import dj_database_url
     DATABASES = {
@@ -180,13 +181,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Settings STATIC
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = 'media/'
 
-
+# Media server
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     cloudinary.config(
@@ -196,9 +198,10 @@ if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
 else:
     MEDIA_ROOT = BASE_DIR / 'media'
 
-
+# Al iniciar sesion redirecciona a home
 LOGIN_REDIRECT_URL = '/'
 
+# Settings Email
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.gmail.com'
@@ -218,6 +221,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
+# Name that can not use
 ACCOUNT_USERNAME_BACKLIST = [ 'admin', 'accounts', 'profile']
 
 
