@@ -38,7 +38,7 @@ else:
     
     
     
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://maxisneakers.up.railway.app']
 
 CORS_ALLOWED_ORIGINS = [
     'https://maxisneakers.up.railway.app',
@@ -126,11 +126,12 @@ WSGI_APPLICATION = 'a_core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # Use database local
-POSTGRES_LOCALLY = True
+
+POSTGRES_LOCALLY = False
 
 
 # Settings DATEBASE
-if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+if ENVIRONMENT == 'production' or POSTGRES_LOCALLY != True:
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.parse(env('DATABASE_URL'))
