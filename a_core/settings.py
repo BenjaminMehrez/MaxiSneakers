@@ -38,7 +38,7 @@ else:
     
     
     
-ALLOWED_HOSTS = ['https://maxisneakers.up.railway.app']
+ALLOWED_HOSTS = ['*','https://maxisneakers.up.railway.app']
 
 CORS_ALLOWED_ORIGINS = [
     'https://maxisneakers.up.railway.app',
